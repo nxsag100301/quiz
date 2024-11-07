@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Admin from './component/admin/admin';
+import Admin from './component/admin/Admin';
 import User from './component/user/user';
 import HomePage from './component/Home/homepage';
 
@@ -18,8 +18,8 @@ root.render(
         <Route path='/' element={<App />} >
           <Route index element={<HomePage />} />
           <Route path='users' element={<User />} />
-          <Route path='admin' element={<Admin />} />
         </Route>
+        <Route path='admin' element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </Provider>
