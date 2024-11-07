@@ -1,0 +1,88 @@
+body {
+  margin : 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1500px) {
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1450px !important;
+  }
+}
+
+.app-container {
+  .header-container {
+    .btn-login {
+      outline         : none;
+      margin-right    : 15px;
+      padding         : 5px 20px;
+      border          : 2px solid #535353;
+      border-radius   : 5px;
+      background-color: transparent;
+      height          : 40px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .btn-signup {
+      outline         : none;
+      margin-right    : 15px;
+      padding         : 10px 15px;
+      background-color: #222121;
+      color           : white;
+      border          : 1px solid white;
+      border-radius   : 5px;
+      height          : 40px;
+      display         : flex;
+      justify-content : center;
+      align-items     : center;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .navbar {
+      padding-top: 20px;
+
+      .navbar-nav {
+        .nav-link {
+
+          &.active {
+            color: blue;
+          }
+        }
+      }
+    }
+
+  }
+
+  .main-container {
+    .sidenav-container {}
+
+    .app-content {}
+  }
+}
+
+video {
+  position  : fixed;
+  top       : 0;
+  left      : 0;
+  width     : 100%;
+  height    : 100%;
+  object-fit: cover;
+  /* Giữ tỉ lệ video mà không bị méo, cắt nếu cần */
+  z-index   : -1;
+  /* Đảm bảo video nằm dưới các nội dung khác nếu cần */
+}

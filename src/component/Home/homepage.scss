@@ -1,0 +1,32 @@
+.homepage-container {
+    .homepage-content {
+        margin-top : 130px;
+        margin-left: 170px;
+
+        .first-title {
+            font-size    : 45px;
+            margin-right : 1000px;
+            margin-bottom: 20px;
+        }
+
+        .second-title {
+            margin-right : 950px;
+            font-size    : 20px;
+            margin-bottom: 20px;
+            opacity      : 0.9;
+        }
+
+        .third-title {
+            margin-top: 35px;
+
+            button {
+                padding         : 10px 20px;
+                font-size       : 14px;
+                font-weight     : 500;
+                color           : white;
+                background-color: black;
+                border-radius   : 7px;
+            }
+        }
+    }
+}
