@@ -12,6 +12,7 @@ import {
 import { FaGithub, FaRegUser, FaQuestionCircle } from 'react-icons/fa';
 import { MdQuiz, MdDashboard } from "react-icons/md";
 import { IoHandLeft } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const SideBar = (props) => {
     // Nhận `collapsed` và `handleOffSidebar` từ props
@@ -42,11 +43,11 @@ const SideBar = (props) => {
 
             <SidebarContent>
                 <Menu iconShape="circle">
-                    <MenuItem icon={<MdDashboard />}>Dashboard</MenuItem>
+                    <MenuItem icon={<MdDashboard />}><Link to="/admin">Dashboard</Link></MenuItem>
                 </Menu>
                 <Menu iconShape="circle">
                     <SubMenu title={"Features"} icon={<IoHandLeft />}>
-                        <MenuItem icon={<FaRegUser />}> Quản lý Users</MenuItem>
+                        <MenuItem icon={<FaRegUser />}><Link to="/admin/manage-user">Quản lý Users</Link></MenuItem>
                         <MenuItem icon={<MdQuiz />}> Quản lý Quiz</MenuItem>
                         <MenuItem icon={<FaQuestionCircle />}> Quản lý câu hỏi</MenuItem>
                     </SubMenu>
