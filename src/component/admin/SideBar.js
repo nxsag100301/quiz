@@ -12,11 +12,16 @@ import {
 import { FaGithub, FaRegUser, FaQuestionCircle } from 'react-icons/fa';
 import { MdQuiz, MdDashboard } from "react-icons/md";
 import { IoHandLeft } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoMdAddCircle } from "react-icons/io";
+import { FaListUl } from "react-icons/fa";
+import { RiQuestionAnswerFill } from "react-icons/ri";
 
 const SideBar = (props) => {
     // Nhận `collapsed` và `handleOffSidebar` từ props
     const { collapsed, handleOffSidebar } = props;
+
+    const navigate = useNavigate()
 
     return (
         <ProSidebar
@@ -34,10 +39,10 @@ const SideBar = (props) => {
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap',
-                    }}
-                >
+                    }}>
                     {/* Khi nhấp vào biểu tượng `MdQuiz`, sẽ gọi `handleOffSidebar` để đóng/mở sidebar */}
-                    <span onClick={handleOffSidebar}><MdQuiz size={25} /></span> Quiz with React Hook
+                    <span onClick={handleOffSidebar}><MdQuiz size={25} /></span>&nbsp;
+                    <span style={{ cursor: "pointer" }} onClick={() => navigate('/')}>Nxsag</span>
                 </div>
             </SidebarHeader>
 
@@ -47,9 +52,14 @@ const SideBar = (props) => {
                 </Menu>
                 <Menu iconShape="circle">
                     <SubMenu title={"Features"} icon={<IoHandLeft />}>
-                        <MenuItem icon={<FaRegUser />}><Link to="/admin/manage-user">Quản lý Users</Link></MenuItem>
-                        <MenuItem icon={<MdQuiz />}> Quản lý Quiz</MenuItem>
-                        <MenuItem icon={<FaQuestionCircle />}> Quản lý câu hỏi</MenuItem>
+                        <MenuItem icon={<FaRegUser />}><Link to="manage-user">Quản lý Users</Link></MenuItem>
+                        <Menu iconShape="circle">
+                            <SubMenu title={"Quản lý Quiz"} icon={<RiQuestionAnswerFill />}>
+                                <MenuItem icon={<IoMdAddCircle />}><Link to="manage-quiz">Thêm Quiz</Link></MenuItem>
+                                <MenuItem icon={<FaListUl />}><Link to="list-quiz">Danh sách Quiz</Link></MenuItem>
+                            </SubMenu>
+                        </Menu>
+                        <MenuItem icon={<FaQuestionCircle />}><Link to='manage-questions'>Quản lý câu hỏi</Link> </MenuItem>
                     </SubMenu>
                 </Menu>
             </SidebarContent>

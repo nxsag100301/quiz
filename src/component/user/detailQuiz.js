@@ -5,11 +5,14 @@ import { getQuizDataById, postSubmitQuiz } from '../../services/apiservice'
 import _ from 'lodash'
 import Question from './question'
 import { toast } from 'react-toastify'
+import ModalResult from './modalResult'
 
 const DetailQuiz = (props) => {
 
     const [dataQuiz, setDataQuiz] = useState([])
     const [index, setIndex] = useState(0)
+    const [isShowResultModal, setIsShowResultModal] = useState(false)
+    const [dataModal, setDataModal] = useState('')
 
     const location = useLocation()
     const params = useParams()
@@ -105,53 +108,66 @@ const DetailQuiz = (props) => {
         }
         else {
             let res = await postSubmitQuiz(payload)
-            console.log('check res:', res)
+            if (res?.EC === 0) {
+                setIsShowResultModal(true)
+                setDataModal(res?.DT)
+            }
+            else {
+                toast.error(res?.EM || "Something wrong")
+            }
         }
     }
 
     return (
-        <div className="detail-quiz-container">
-            <div className='quiz-left-content'>
-                <div className='quiz-title'>
-                    Quiz {quizId}: {location?.state?.quizTitle}
-                </div>
-                <hr />
-                <div className='quiz-body'>
+        <>
+            <ModalResult handleIsShowResult={() => setIsShowResultModal(!isShowResultModal)}
+                isShowResultModal={isShowResultModal}
+                dataModal={dataModal}
+            />
+            <div className="detail-quiz-container">
+                <div className='quiz-left-content'>
+                    <div className='quiz-title'>
+                        Quiz {quizId}: {location?.state?.quizTitle}
+                    </div>
+                    <hr />
+                    <div className='quiz-body'>
 
+                    </div>
+                    <div className='quiz-content'>
+                        <Question
+                            handleCheckBoxParent={handleCheckBoxParent}
+                            index={index}
+                            data={dataQuiz && dataQuiz.length > 0
+                                ?
+                                dataQuiz[index]
+                                :
+                                []
+                            } />
+                    </div>
+                    <div className='quiz-footer'>
+                        <button className='btn btn-primary'
+                            onClick={() => setIndex(index - 1)}
+                            disabled={index === 0 ? true : false}
+                        >Prev</button>
+                        <button className='btn btn-primary'
+                            onClick={() => setIndex(index + 1)}
+                            disabled={index + 1 === dataQuiz?.length ? true : false}
+                        >
+                            Next
+                        </button>
+                        <button className='btn btn-warning'
+                            onClick={() => handleFinishQuiz()}
+                        >
+                            Finish
+                        </button>
+                    </div>
                 </div>
-                <div className='quiz-content'>
-                    <Question
-                        handleCheckBoxParent={handleCheckBoxParent}
-                        index={index}
-                        data={dataQuiz && dataQuiz.length > 0
-                            ?
-                            dataQuiz[index]
-                            :
-                            []
-                        } />
-                </div>
-                <div className='quiz-footer'>
-                    <button className='btn btn-primary'
-                        onClick={() => setIndex(index - 1)}
-                        disabled={index === 0 ? true : false}
-                    >Prev</button>
-                    <button className='btn btn-primary'
-                        onClick={() => setIndex(index + 1)}
-                        disabled={index + 1 === dataQuiz?.length ? true : false}
-                    >
-                        Next
-                    </button>
-                    <button className='btn btn-warning'
-                        onClick={() => handleFinishQuiz()}
-                    >
-                        Finish
-                    </button>
+                <div className='quiz-right-content'>
+                    count down
                 </div>
             </div>
-            <div className='quiz-right-content'>
-                count down
-            </div>
-        </div>
+        </>
+
     )
 }
 

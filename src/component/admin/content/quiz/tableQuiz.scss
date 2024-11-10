@@ -1,0 +1,105 @@
+.table-quiz-container {
+    .table-quiz-title {
+        font-size     : 20px;
+        font-weight   : 500;
+        text-transform: uppercase;
+        text-align    : center;
+        margin-bottom : 50px;
+    }
+
+    .add-new-quiz {
+        margin-left  : 50px;
+        margin-bottom: 15px;
+
+
+        button {
+            display         : flex;
+            align-items     : center;
+            gap             : 5px;
+            border          : none;
+            outline         : none;
+            border-radius   : 6px;
+            background-color: blue;
+            color           : white;
+            padding         : 4px 7px;
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+
+    .table-quiz-content {
+        margin: 0 50px;
+
+        .list-quiz-btn {
+            display: flex;
+            gap    : 10px;
+
+            .list-quiz-btn-edit {
+                display         : flex;
+                align-items     : center;
+                gap             : 5px;
+                border          : none;
+                outline         : none;
+                border-radius   : 6px;
+                background-color: orange;
+                color           : black;
+                padding         : 5px 20px;
+
+                &:hover {
+                    color: #ccc;
+                }
+
+            }
+
+            .list-quiz-btn-delete {
+                display         : flex;
+                align-items     : center;
+                gap             : 5px;
+                border          : none;
+                outline         : none;
+                border-radius   : 6px;
+                background-color: red;
+                color           : white;
+                padding         : 5px 15px;
+
+                &:hover {
+                    color: #ccc;
+                }
+
+            }
+        }
+
+
+    }
+}
+
+.modal-body {
+    .edit-quiz {
+        .more-actions {
+            .label-upload {
+                cursor     : pointer;
+                display    : flex;
+                align-items: center;
+                gap        : 3px;
+            }
+        }
+
+        .img-preview {
+            display        : flex;
+            justify-content: center;
+            align-items    : center;
+            height         : 150px;
+            border-radius  : 5px;
+            border         : 1px dashed black;
+            color          : #ccc;
+
+            img {
+                max-height: 100%;
+                max-width : 100%;
+
+            }
+        }
+    }
+}

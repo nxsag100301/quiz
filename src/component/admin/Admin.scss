@@ -11,10 +11,11 @@
         width: 100%;
 
         .admin-header {
-            height: 40px;
-
+            height: 20px;
         }
 
-        .admin-main {}
+        .admin-main {
+            height: calc(100vh - 20px)
+        }
     }
 }
