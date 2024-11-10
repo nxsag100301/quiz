@@ -1,12 +1,22 @@
 import axios from "axios";
+import NProgress from "nprogress";
+import { store } from "../redux/store";
+
+NProgress.configure({
+    showSpinner: false,  // Ẩn vòng xoay
+    trickleSpeed: 100
+});
 
 const instance = axios.create({
     baseURL: 'http://localhost:8081/',
 });
 
+
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
-    // config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`;
+    NProgress.start();
+    const access_token = store?.getState()?.user?.account?.access_token
+    config.headers.Authorization = `Bearer ${access_token}`;
     // Do something before request is sent
     return config;
 }, function (error) {
@@ -14,8 +24,10 @@ instance.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+
 // Add a response interceptor
 instance.interceptors.response.use(function (response) {
+    NProgress.done();
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response && response.data ? response.data : response;

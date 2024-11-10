@@ -1,0 +1,144 @@
+.login-container {
+    margin-top: 15px;
+
+    .login-header {
+        float: right;
+
+        .content-login-header {
+            margin-right: 10px;
+            display     : flex;
+            align-items : center;
+
+            .login-help {
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            button {
+                margin          : 0 10px;
+                border          : 2px solid black;
+                outline         : none;
+                padding         : 5px 10px;
+                border-radius   : 5px;
+                background-color: transparent;
+                color           : black;
+
+                &:hover {
+                    background-color: rgb(25, 21, 21);
+                    color           : white;
+                }
+            }
+        }
+    }
+
+    .login-title {
+        padding-top: 90px;
+        text-align : center;
+        font-size  : 25px;
+        font-weight: 500;
+    }
+
+    .login-welcome {
+        margin     : 30px 0;
+        text-align : center;
+        font-size  : 18px;
+        font-weight: 400;
+    }
+
+    .login-form {
+        margin: 20px 0;
+
+
+        .form-group {
+            position: relative; // Đảm bảo các phần tử con có thể được định vị bên trong
+            margin  : 20px 0;
+
+            .password-design {
+                position   : relative; // Để icon có thể nằm trong input
+                display    : flex;
+                align-items: center;
+
+                .form-control {
+                    padding-right: 30px; // Tạo khoảng trống cho icon nằm trong input
+                    width        : 100%;
+                }
+
+                .password-icon {
+                    position : absolute;
+                    right    : 10px;
+                    top      : 50%;
+                    transform: translateY(-50%);
+                    cursor   : pointer;
+
+                }
+            }
+        }
+
+        .forgot-password-login {
+            font-style: italic;
+
+            span {
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .btn-login {
+            margin-top     : 20px;
+            display        : flex;
+            justify-content: center;
+
+            button {
+                padding         : 5px 25px;
+                background-color: rgb(25, 21, 21);
+                color           : white;
+                border-radius   : 5px;
+
+                &:hover {
+                    background-color: transparent;
+                    color           : black;
+                }
+
+                &:disabled {
+                    background: #dddddd;
+                    color     : #645a5a;
+                    cursor    : no-drop;
+                }
+            }
+
+            .loader-icon {
+                margin-right: 7px;
+                top         : 2px;
+                animation   : spin 1s infinite linear;
+            }
+
+            @keyframes spin {
+                from {
+                    transform: scale(1) rotate(0deg);
+                }
+
+                to {
+                    transform: scale(1) rotate(360deg);
+                }
+            }
+        }
+
+        .go-homepage {
+            margin-top: 15px;
+
+            span {
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}

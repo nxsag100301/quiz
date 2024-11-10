@@ -53,6 +53,7 @@ const ModalAddNewUser = (props) => {
             setRole('USER');
             setImage('');
             setPreviewImage('');
+            props.setCurrentPage(1)
             await fetchAllUsersWithPaginate(1)
         }
         else {

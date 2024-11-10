@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import ModalAddNewUser from "./modaladdnewuser"
 import './manageusers.scss'
 import { ImUserPlus } from "react-icons/im";
-import TableUsers from "./tableusers";
 import { getAllUsers } from "../../../services/apiservice";
 import { toast } from "react-toastify"
 import ModalEditUser from "./modalEditUser";
@@ -12,13 +11,14 @@ import { getAllUsersWithPaginate } from "../../../services/apiservice";
 
 const ManageUser = (props) => {
 
-    const LIMIT_USER = 6;
+    const LIMIT_USER = 4;
     const [isShowModal, setIsShowModal] = useState(false)
     const [isShowEditModal, setIsShowEditModal] = useState(false)
     const [allUsers, setAllUsers] = useState('')
     const [userEdit, setUserEdit] = useState('')
     const [isShowDeleteModal, setIsShowDeleteModal] = useState(false)
     const [pageCount, setPagecount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const handleOpenCloseModal = () => {
         setIsShowModal(!isShowModal)
@@ -35,7 +35,7 @@ const ManageUser = (props) => {
     }
 
     useEffect(() => {
-        fetchAllUsersWithPaginate(1)
+        fetchAllUsersWithPaginate(currentPage)
     }, [])
 
     const fetchAllUsers = async () => {
@@ -68,6 +68,8 @@ const ManageUser = (props) => {
                 handleOpenCloseModal={handleOpenCloseModal}
                 fetchAllUsers={fetchAllUsers}
                 fetchAllUsersWithPaginate={fetchAllUsersWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
             />
             <ModalEditUser
                 isShowEditModal={isShowEditModal}
@@ -75,12 +77,16 @@ const ManageUser = (props) => {
                 fetchAllUsers={fetchAllUsers}
                 userEdit={userEdit}
                 fetchAllUsersWithPaginate={fetchAllUsersWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
             />
             <ModalDeleteUser isShowDeleteModal={isShowDeleteModal}
                 handleDeleteUser={handleDeleteUser}
                 fetchAllUsers={fetchAllUsers}
                 userEdit={userEdit}
                 fetchAllUsersWithPaginate={fetchAllUsersWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
             />
             <div className="manage-user-container">
                 <div className="manage-title">
@@ -96,7 +102,10 @@ const ManageUser = (props) => {
                             handleOpenCloseEditModal={handleOpenCloseEditModal}
                             handleDeleteUser={handleDeleteUser}
                             fetchAllUsersWithPaginate={fetchAllUsersWithPaginate}
-                            pageCount={pageCount} />
+                            pageCount={pageCount}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        />
                     </div>
                 </div>
             </div>

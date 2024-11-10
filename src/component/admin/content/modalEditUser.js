@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 const ModalEditUser = (props) => {
 
-    const { isShowEditModal, handleOpenCloseEditModal, fetchAllUsers, userEdit, fetchAllUsersWithPaginate } = props
+    const { isShowEditModal, handleOpenCloseEditModal, userEdit, fetchAllUsersWithPaginate } = props
 
     const [id, setId] = useState('')
     const [email, setEmail] = useState('')
@@ -46,7 +46,7 @@ const ModalEditUser = (props) => {
         if (res?.EC === 0) {
             toast.success('Edit user success')
             handleOpenCloseEditModal()
-            await fetchAllUsersWithPaginate(1)
+            await fetchAllUsersWithPaginate(props.currentPage)
         }
         else {
             toast.error(res?.EM)

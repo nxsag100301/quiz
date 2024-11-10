@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react"
-import { getAllUsers } from "../../../services/apiservice"
-import { toast } from "react-toastify"
 import ReactPaginate from "react-paginate"
+import { GrFormPreviousLink, GrFormNextLink } from "react-icons/gr";
 
 
 const TableUsersPaginate = (props) => {
@@ -10,6 +8,7 @@ const TableUsersPaginate = (props) => {
 
     const handlePageClick = (event) => {
         fetchAllUsersWithPaginate(+event.selected + 1)
+        props.setCurrentPage(+event.selected + 1)
         console.log(`User requested page number ${event.selected + 1}`);
     }
 
@@ -19,6 +18,7 @@ const TableUsersPaginate = (props) => {
                 <thead>
                     <tr>
                         <th scope="colSpan">#</th>
+                        <th scope="colSpan">Id</th>
                         <th scope="colSpan">Email</th>
                         <th scope="colSpan">Username</th>
                         <th scope="colSpan">Role</th>
@@ -31,6 +31,7 @@ const TableUsersPaginate = (props) => {
                             return (
                                 <tr key={`table-users-${index}`}>
                                     <th>{index + 1}</th>
+                                    <th>{item.id}</th>
                                     <td>{item.email}</td>
                                     <td>{item.username}</td>
                                     <td>{item.role}</td>
@@ -49,26 +50,29 @@ const TableUsersPaginate = (props) => {
                         })}
                 </tbody>
             </table>
-            <ReactPaginate
-                nextLabel="Next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< Prev"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-            />
+            <div className="user-paginate">
+                <ReactPaginate
+                    nextLabel={<GrFormNextLink />}
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    pageCount={pageCount}
+                    previousLabel={<GrFormPreviousLink />}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                    forcePage={props.currentPage - 1}
+                />
+            </div>
         </>
     )
 }
