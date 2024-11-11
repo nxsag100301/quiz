@@ -23,7 +23,6 @@ const ListQuiz = (props) => {
             toast.error(res?.EM || 'Something wrong')
         }
     }
-
     return (
         <div className="list-quiz-container container">
             {arrQuiz?.length > 0 ?

@@ -36,11 +36,11 @@ const ManageQuiz = (props) => {
             let res = await postCreateNewQuiz(description, name, difficulty?.value, image)
             if (res?.EC === 0) {
                 toast.success(`Create ${name} success`)
-                // setName('')
-                // setDescrption('')
-                // setDifficulty('EASY')
-                // setImage(null)
-                // setPreviewImage(null)
+                setName('')
+                setDescrption('')
+                setDifficulty('EASY')
+                setImage(null)
+                setPreviewImage(null)
             }
             else {
                 toast.error(res?.EM || "Some thing wrong")
