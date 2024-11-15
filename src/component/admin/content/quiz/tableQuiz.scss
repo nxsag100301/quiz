@@ -1,78 +1,89 @@
 .table-quiz-container {
-    .table-quiz-title {
-        font-size     : 20px;
-        font-weight   : 500;
-        text-transform: uppercase;
-        text-align    : center;
-        margin-bottom : 50px;
-    }
+    margin    : 20px 30px;
+    max-width : 100%;
+    overflow-x: auto;
 
-    .add-new-quiz {
-        margin-left  : 50px;
-        margin-bottom: 15px;
+    .accordion-item {
+        margin  : 10px 0;
+        overflow: hidden;
 
+        .manage-question {}
 
-        button {
-            display         : flex;
-            align-items     : center;
-            gap             : 5px;
-            border          : none;
-            outline         : none;
-            border-radius   : 6px;
-            background-color: blue;
-            color           : white;
-            padding         : 4px 7px;
-
-            &:hover {
-                color: #ccc;
-            }
+        .table-quiz-title {
+            font-size     : 20px;
+            font-weight   : 500;
+            text-transform: uppercase;
+            text-align    : center;
+            margin-bottom : 50px;
         }
-    }
 
-    .table-quiz-content {
-        margin: 0 50px;
+        .add-new-quiz {
+            margin-left  : 50px;
+            margin-bottom: 15px;
 
-        .list-quiz-btn {
-            display: flex;
-            gap    : 10px;
 
-            .list-quiz-btn-edit {
+            button {
                 display         : flex;
                 align-items     : center;
                 gap             : 5px;
                 border          : none;
                 outline         : none;
                 border-radius   : 6px;
-                background-color: orange;
-                color           : black;
-                padding         : 5px 20px;
-
-                &:hover {
-                    color: #ccc;
-                }
-
-            }
-
-            .list-quiz-btn-delete {
-                display         : flex;
-                align-items     : center;
-                gap             : 5px;
-                border          : none;
-                outline         : none;
-                border-radius   : 6px;
-                background-color: red;
+                background-color: blue;
                 color           : white;
-                padding         : 5px 15px;
+                padding         : 4px 7px;
 
                 &:hover {
                     color: #ccc;
                 }
-
             }
         }
 
+        .table-quiz-content {
+            margin: 0 50px;
 
+            .list-quiz-btn {
+                display: flex;
+                gap    : 10px;
+
+                .list-quiz-btn-edit {
+                    display         : flex;
+                    align-items     : center;
+                    gap             : 5px;
+                    border          : none;
+                    outline         : none;
+                    border-radius   : 6px;
+                    background-color: orange;
+                    color           : black;
+                    padding         : 5px 20px;
+
+                    &:hover {
+                        color: #ccc;
+                    }
+
+                }
+
+                .list-quiz-btn-delete {
+                    display         : flex;
+                    align-items     : center;
+                    gap             : 5px;
+                    border          : none;
+                    outline         : none;
+                    border-radius   : 6px;
+                    background-color: red;
+                    color           : white;
+                    padding         : 5px 15px;
+
+                    &:hover {
+                        color: #ccc;
+                    }
+
+                }
+            }
+        }
     }
+
+
 }
 
 .modal-body {

@@ -6,6 +6,7 @@ import _ from 'lodash'
 import Question from './question'
 import { toast } from 'react-toastify'
 import ModalResult from './modalResult'
+import RightContent from './content/rightContent'
 
 const DetailQuiz = (props) => {
 
@@ -117,7 +118,39 @@ const DetailQuiz = (props) => {
             }
         }
     }
-
+    const handleFinishQuizTimesUp = async () => {
+        let payload = {
+            quizId: +quizId,
+            answers: []
+        }
+        let answers = []
+        if (dataQuiz?.length > 0) {
+            dataQuiz.forEach(item => {
+                let questionId = +item.questionId
+                let userAnswerId = []
+                if (item?.answers?.length > 0) {
+                    item?.answers.forEach(item => {
+                        if (item.isSelected === true) {
+                            userAnswerId.push(item.id)
+                        }
+                    })
+                }
+                answers.push({
+                    questionId: questionId,
+                    userAnswerId: userAnswerId
+                })
+            })
+            payload.answers = answers
+        }
+        let res = await postSubmitQuiz(payload)
+        if (res?.EC === 0) {
+            setIsShowResultModal(true)
+            setDataModal(res?.DT)
+        }
+        else {
+            toast.error(res?.EM || "Something wrong")
+        }
+    }
     return (
         <>
             <ModalResult handleIsShowResult={() => setIsShowResultModal(!isShowResultModal)}
@@ -163,7 +196,9 @@ const DetailQuiz = (props) => {
                     </div>
                 </div>
                 <div className='quiz-right-content'>
-                    count down
+                    <RightContent
+                        dataQuiz={dataQuiz}
+                        handleFinishQuizTimesUp={handleFinishQuizTimesUp} />
                 </div>
             </div>
         </>
