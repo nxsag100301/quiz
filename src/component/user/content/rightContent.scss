@@ -37,6 +37,10 @@
             &.not-answer {
                 color: red;
             }
+
+            &.answered {
+                color: blue;
+            }
         }
     }
 }

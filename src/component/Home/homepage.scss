@@ -1,9 +1,14 @@
 .homepage-container {
+    position: relative;
+    z-index : 0;
+
     .homepage-content {
         margin-top : 130px;
         margin-left: 170px;
 
         .first-title {
+            position     : relative;
+            z-index      : 0;
             font-size    : 45px;
             margin-right : 1000px;
             margin-bottom: 20px;
@@ -18,6 +23,8 @@
 
         .third-title {
             margin-top: 35px;
+            position  : relative;
+            z-index   : 0;
 
             button {
                 padding         : 10px 20px;
@@ -29,4 +36,15 @@
             }
         }
     }
+}
+
+video {
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    /* Giữ tỉ lệ video mà không bị méo, cắt nếu cần */
+    /* Đảm bảo video nằm dưới các nội dung khác nếu cần */
 }

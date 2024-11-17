@@ -1,9 +1,10 @@
 
-import { FETCH_USER_LOGIN_SUCCESS } from "../action/userAction";
+import { FETCH_USER_LOGIN_SUCCESS, USER_LOGOUT_SUCCESS } from "../action/userAction";
 const INITIAL_STATE = {
     account: {
         access_token: '',
         refresh_token: '',
+        email: '',
         username: '',
         image: '',
         role: '',
@@ -20,6 +21,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 account: {
                     access_token: data?.access_token,
                     refresh_token: data?.refresh_token,
+                    email: data?.email,
                     username: data?.username,
                     image: data?.image,
                     role: data?.role,
@@ -27,10 +29,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 isAuthenticated: true
             };
 
-        // case DECREMENT:
-        //     return {
-        //         ...state, count: state.count - 1,
-        //     };
+        case USER_LOGOUT_SUCCESS:
+            return {
+                ...state,
+                account: {
+                    access_token: '',
+                    refresh_token: '',
+                    email: '',
+                    username: '',
+                    image: '',
+                    role: '',
+                },
+                isAuthenticated: false
+            };
         default: return state;
     }
 };

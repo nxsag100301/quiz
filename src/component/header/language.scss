@@ -1,0 +1,22 @@
+.change-language {
+    margin: 0 15px;
+
+    .lan-vn {
+        margin: 3px;
+        cursor: pointer;
+
+        &.active {
+            color: red;
+        }
+    }
+
+    .lan-en {
+        margin: 3px;
+        cursor: pointer;
+
+        &.active {
+            color: blue;
+        }
+    }
+
+}

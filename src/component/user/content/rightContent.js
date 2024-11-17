@@ -1,11 +1,27 @@
+import { useEffect } from 'react'
 import CountDown from './countDown'
 import './rightContent.scss'
 
 
 const RightContent = (props) => {
-    const { dataQuiz, handleFinishQuizTimesUp } = props
+    const { dataQuiz, handleFinishQuizTimesUp, setIndex } = props
+
     const onTimesUp = () => {
         handleFinishQuizTimesUp()
+    }
+
+    const getClassQuestion = (question) => {
+        if (question?.answers?.length > 0) {
+            let isNotAnswered = question.answers.find(item =>
+                item.isSelected === true
+            )
+            if (isNotAnswered) {
+                return "question answered"
+            }
+            else {
+                return "question not-answer"
+            }
+        }
     }
     return (
         <div className="right-content-container">
@@ -16,7 +32,12 @@ const RightContent = (props) => {
                 {dataQuiz?.length > 0 &&
                     dataQuiz.map((item, index) => {
                         return (
-                            <div key={`question-${index}`} className="question">{index + 1}</div>
+                            <div
+                                key={`question-${index}`}
+                                onClick={() => setIndex(index)}
+                                className={index === props.index ? `question active ${getClassQuestion(item)} ` : getClassQuestion(item)}>
+                                {index + 1}
+                            </div>
                         )
                     })}
             </div>

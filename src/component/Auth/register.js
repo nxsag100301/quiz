@@ -4,6 +4,7 @@ import { postRegister } from '../../services/apiservice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { IoIosEyeOff, IoIosEye } from "react-icons/io";
+import Language from '../header/language'
 
 const Register = (props) => {
 
@@ -53,6 +54,7 @@ const Register = (props) => {
         <div className="register-container">
             <div className='register-header'>
                 <div className='content-register-header'>
+                    <Language />
                     <span>Already have account?</span>
                     <button onClick={() => handleLogin()}>Sign In</button>
                     <div className='register-help'>

@@ -1,5 +1,7 @@
 .admin-container {
-    display: flex;
+    display   : flex;
+    background: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+
 
     .admin-sidebar {
         .pro-sidebar {
@@ -11,11 +13,35 @@
         width: 100%;
 
         .admin-header {
-            height: 20px;
+            height       : 73px;
+            border-bottom: 1px solid #ccc;
+
+            .content {
+                height : 73px;
+                display: flex;
+
+                .content-left {
+                    width: 78%;
+                }
+
+                .content-right {
+                    width      : 22%;
+                    display    : flex;
+                    align-items: center;
+
+                    .nav-dropdown {
+                        a {
+                            color          : #000 !important;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
         }
 
         .admin-main {
-            height: calc(100vh - 20px)
+            height: calc(100vh - 73px);
+
         }
     }
 }

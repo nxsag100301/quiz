@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import './detailQuiz.scss'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, Link, NavLink } from 'react-router-dom'
 import { getQuizDataById, postSubmitQuiz } from '../../services/apiservice'
 import _ from 'lodash'
 import Question from './question'
 import { toast } from 'react-toastify'
 import ModalResult from './modalResult'
 import RightContent from './content/rightContent'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 const DetailQuiz = (props) => {
 
@@ -42,8 +43,6 @@ const DetailQuiz = (props) => {
         setDataQuiz(dataQuizClone);
     };
 
-
-
     const fetchQuestion = async () => {
         let res = await getQuizDataById(quizId)
         if (res?.EC === 0) {
@@ -64,7 +63,7 @@ const DetailQuiz = (props) => {
                         item.answers.isSelected = false;
                         answers.push(item?.answers)
                     })
-
+                    answers = _.orderBy(answers, ['id'], ['asc'])
                     return { questionId: key, answers, questionDescription, image }
                 })
                 .value()
@@ -153,54 +152,64 @@ const DetailQuiz = (props) => {
     }
     return (
         <>
-            <ModalResult handleIsShowResult={() => setIsShowResultModal(!isShowResultModal)}
-                isShowResultModal={isShowResultModal}
-                dataModal={dataModal}
-            />
             <div className="detail-quiz-container">
-                <div className='quiz-left-content'>
-                    <div className='quiz-title'>
-                        Quiz {quizId}: {location?.state?.quizTitle}
-                    </div>
-                    <hr />
-                    <div className='quiz-body'>
+                <ModalResult handleIsShowResult={() => setIsShowResultModal(!isShowResultModal)}
+                    isShowResultModal={isShowResultModal}
+                    dataModal={dataModal}
+                />
+                <Breadcrumb className='detail-quiz-breadcrumb'>
+                    <NavLink to="/" className='breadcrumb-item'>Home</NavLink>
+                    <NavLink to="/users" className='breadcrumb-item'>Users</NavLink>
+                    <Breadcrumb.Item active>Quiz</Breadcrumb.Item>
+                </Breadcrumb>
+                <div className='quiz-content-container'>
+                    <div className='quiz-left-content'>
+                        <div className='quiz-title'>
+                            Quiz {quizId}: {location?.state?.quizTitle}
+                        </div>
+                        <hr />
+                        <div className='quiz-body'>
 
+                        </div>
+                        <div className='quiz-content'>
+                            <Question
+                                handleCheckBoxParent={handleCheckBoxParent}
+                                index={index}
+                                data={dataQuiz && dataQuiz.length > 0
+                                    ?
+                                    dataQuiz[index]
+                                    :
+                                    []
+                                } />
+                        </div>
+                        <div className='quiz-footer'>
+                            <button className='btn btn-primary'
+                                onClick={() => setIndex(index - 1)}
+                                disabled={index === 0 ? true : false}
+                            >Prev</button>
+                            <button className='btn btn-primary'
+                                onClick={() => setIndex(index + 1)}
+                                disabled={index + 1 === dataQuiz?.length ? true : false}
+                            >
+                                Next
+                            </button>
+                            <button className='btn btn-warning'
+                                onClick={() => handleFinishQuiz()}
+                            >
+                                Finish
+                            </button>
+                        </div>
                     </div>
-                    <div className='quiz-content'>
-                        <Question
-                            handleCheckBoxParent={handleCheckBoxParent}
-                            index={index}
-                            data={dataQuiz && dataQuiz.length > 0
-                                ?
-                                dataQuiz[index]
-                                :
-                                []
-                            } />
+                    <div className='quiz-right-content'>
+                        <RightContent
+                            dataQuiz={dataQuiz}
+                            handleFinishQuizTimesUp={handleFinishQuizTimesUp}
+                            setIndex={setIndex}
+                            index={index} />
                     </div>
-                    <div className='quiz-footer'>
-                        <button className='btn btn-primary'
-                            onClick={() => setIndex(index - 1)}
-                            disabled={index === 0 ? true : false}
-                        >Prev</button>
-                        <button className='btn btn-primary'
-                            onClick={() => setIndex(index + 1)}
-                            disabled={index + 1 === dataQuiz?.length ? true : false}
-                        >
-                            Next
-                        </button>
-                        <button className='btn btn-warning'
-                            onClick={() => handleFinishQuiz()}
-                        >
-                            Finish
-                        </button>
-                    </div>
-                </div>
-                <div className='quiz-right-content'>
-                    <RightContent
-                        dataQuiz={dataQuiz}
-                        handleFinishQuizTimesUp={handleFinishQuizTimesUp} />
                 </div>
             </div>
+
         </>
 
     )

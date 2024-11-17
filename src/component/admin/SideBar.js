@@ -41,8 +41,8 @@ const SideBar = (props) => {
                         whiteSpace: 'nowrap',
                     }}>
                     {/* Khi nhấp vào biểu tượng `MdQuiz`, sẽ gọi `handleOffSidebar` để đóng/mở sidebar */}
-                    <span onClick={handleOffSidebar}><MdQuiz size={25} /></span>&nbsp;
-                    <span style={{ cursor: "pointer" }} onClick={() => navigate('/')}>Nxsag</span>
+                    <span style={{ cursor: "pointer" }} onClick={handleOffSidebar}><MdQuiz size={25} /></span>&nbsp;
+                    <span style={{ cursor: "pointer", marginLeft: "10px" }} onClick={() => navigate('/')}>Nxsag</span>
                 </div>
             </SidebarHeader>
 

@@ -18,6 +18,7 @@ const Question = (props) => {
         handleCheckBoxParent(aId, qId)
     }
 
+
     return (
         <div className="question-container">
             {data?.image ?

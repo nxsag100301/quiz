@@ -7,6 +7,7 @@ import { IoIosEyeOff, IoIosEye } from "react-icons/io"
 import { useDispatch } from 'react-redux'
 import { doLogin } from '../../redux/action/userAction'
 import { ImSpinner } from "react-icons/im"
+import Language from '../header/language'
 
 const Login = (props) => {
 
@@ -74,6 +75,7 @@ const Login = (props) => {
         <div className="login-container">
             <div className='login-header'>
                 <div className='content-login-header'>
+                    <Language />
                     <span>Don't have account yet?</span>
                     <button onClick={() => handleSignUp()} >Sign Up</button>
                     <div className='login-help'>
