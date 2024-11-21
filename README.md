@@ -1,4 +1,4 @@
-Technologies: ReactJs(Hook),Redux , NodeJS, RESTful API, Bootstrap
+Technologies: ReactJs(Hook), Redux, NodeJS(v14.17.0), RESTful API, Bootstrap
  
 Home:
 ![image](https://github.com/user-attachments/assets/3ec81638-ba6c-4a79-b271-952277a4ae50)
